@@ -1,0 +1,349 @@
+WebdriverIO:
+============
+https://webdriver.io/docs/gettingstarted
+https://martinfowler.com/bliki/PageObject.html
+MochaAwesome TestReport - https://www.youtube.com/watch?v=uCRRCdzU_ps
+Allure Framework - https://www.youtube.com/watch?v=tL8R6BqxJ3o
+
+
+BoilerPlate:
+============
+
+https://github.com/jonyet/webdriverio-boilerplate
+https://www.educative.io/blog/typescript-tutorial
+https://github.com/igniteram/appium-webdriverio-typescript
+
+Typescript:
+===========
+https://www.tektutorialshub.com/typescript/typescript-data-types/
+https://howtodoinjava.com/typescript/tsconfig-json/
+https://www.koderhq.com/tutorial/typescript/config/
+https://www.carlrippon.com/typescript-dictionary/
+https://medium.com/@rm.dev/typescript-type-keyword-explained-21ada293ab70
+
+Ternery Operator: let m = 13
+console.log(`The m is ${(m == 10)?'ten':'not ten'}`)
+
+https://dmitripavlutin.com/foreach-iterate-array-javascript/
+
+Typecasting str -> Num:
+=========================
+https://www.tektutorialshub.com/typescript/typescript-string-to-number/
+The Unary plus (+) operator converts all string representations of numbers, boolean values(true and false), and null to numbers -> console.log(+"100")
+Number global function
+
+https://www.tektutorialshub.com/typescript/nan-in-typescript/
+https://www.tektutorialshub.com/typescript/typescript-literal-types/
+https://www.tektutorialshub.com/typescript/typescript-intersection-types/
+tektutorialshub.com/typescript/nullable-types-non-nullable-types-in-typescript/ - Marking Property & Parameter Optional
+https://dmitripavlutin.com/foreach-iterate-array-javascript/
+https://www.carlrippon.com/typescript-dictionary/
+
+If leftExpr is not null or undefined ,then returns leftExpr
+
+let email
+let selecteditem =  email ?? "No Email Selected";
+console.log(selecteditem)   //No Email Selected
+
+
+https://www.tektutorialshub.com/typescript/type-assertion-in-typescript/
+
+
+Function creation:
+
+https://www.section.io/engineering-education/how-to-use-javascript-arrow-functions-and-this-keyword/
+https://www.digitalocean.com/community/tutorials/how-to-use-functions-in-typescript
+
+using type inference:
+====================
+
+type User = {
+  firstName: string;
+  lastName: string;
+}
+
+function getUserFullName(user:User): string{
+  return `${user.firstName} +','+ ${user.lastName}`
+}
+
+let user: User = {
+  firstName: "Jon",
+  lastName: "Doe"
+};
+
+let userFullName = getUserFullName(user);
+console.log(userFullName)
+
+
+Optional argument:
+==================
+type User = {
+  firstName: string;
+  lastName: string;
+};
+
+function getUserFullName(user: User, prefix?: string) {
+  return `${prefix ?? ''}${user.firstName} ${user.lastName}`;
+}
+
+const user: User = {
+  firstName: "Jon",
+  lastName: "Doe"
+};
+
+const userFullName = getUserFullName(user);
+const mrUserFullName = getUserFullName(user, 'Mr. ');
+
+# Arrow function with default return:
+const getUserName = (name:string, prefix?:string) => `${name}`
+console.log(getUserName("Venkatesh"))
+
+Adding Types to Rest Parameters(*args )
+======================================
+function sum(...args: number[]){
+  return args.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+  },0)
+}
+const sumResult = sum(2, 4, 6, 8);
+console.log(sumResult)
+
+Class:
+====
+https://www.tutorialsteacher.com/typescript/typescript-class
+http://dotnetpattern.com/typescript-abstract-class
+
+class Person {
+  empName: string
+
+  constructor(name:string){
+    this.empName = name
+  }
+
+  getName() {
+    return this.empName
+  }
+}
+
+class Employee extends Person{
+  empCode: number
+  empDesignation: string
+
+  constructor(empName: string,code: number, desig: string){
+    super(empName)
+    
+    this.empCode = code
+    this.empDesignation = desig
+
+  }
+    get empCodeData(){
+      return this.empCode
+    }
+
+    getCode() {
+    return this.empCode
+  }
+
+  displayName():void{
+    console.log("Name = " + this.empName +  ", Employee Code = " + this.empCode)
+  }
+}
+
+let emp = new Employee("Venkatesh1",11,"PAT")
+console.log(emp.getName())
+console.log(emp.getCode())
+
+Class and Interface:
+==============
+interface Iperson {
+    name: string;
+    display():void;
+}
+
+interface IEmployee {
+  empCode: number
+}
+
+class Employee implements Iperson, IEmployee {
+  empCode: number
+  name: string
+
+  constructor(name: string, empCode: number){
+    this.name = name
+    this.empCode = empCode
+  }
+
+  display(): void {
+    console.log("Name = " + this.name +  ", Employee Code = " + this.empCode);
+  }
+}
+
+
+let per:Iperson = new Employee("GH", 100)
+console.log(per.display())
+
+let emp:IEmployee = new Employee("Venkatesh", 111)
+// console.log(emp.display())
+
+==========
+class Car {
+    name: string;
+        
+    constructor(name: string) {
+        this.name = name;
+    }
+    
+    run(speed:number = 0) {
+        console.log("A " + this.name + " is moving at " + speed + " mph!");
+    }
+}
+===============
+class Car {
+    name: string;
+        
+    constructor(name: string) {
+        this.name = name;
+    }
+    
+    run(speed:number = 0) {
+        console.log("A " + this.name + " is moving at " + speed + " mph!");
+    }
+}
+
+class Mercedes extends Car {
+    
+    constructor(name: string) {
+        super(name);
+    }
+    
+    run(speed = 150) {
+        console.log('A Mercedes started')
+        super.run(speed);
+    }
+}
+
+class Honda extends Car {
+    
+    constructor(name: string) {
+        super(name);
+    }
+    
+    run(speed = 100) {
+        console.log('A Honda started')
+        super.run(speed);
+    }
+}
+
+let mercObj = new Mercedes("Mercedes-Benz GLA");
+let hondaObj = new Honda("Honda City")
+
+mercObj.run();  // A Mercedes started A Mercedes-Benz GLA is moving at 150 mph!
+hondaObj.run();
+
+========
+
+abstract class Person {
+  empName: string
+
+  constructor(empName:string){
+    this.empName = empName
+  }
+
+  display(): void {
+    console.log(this.empName)
+  }
+
+  abstract find(empName: string): Person
+
+}
+
+class Employee extends Person{
+  empCode: number
+
+  constructor( empName:string, empCode:number){
+    super(empName); // must call super()
+    this.empCode = empCode
+  }
+
+  find(empName:string):Person {
+    return new Employee(empName, 1)
+  }
+}
+
+let emp:Person = new Employee("Venkatesh", 100)
+emp.display();
+
+let emp2: Person = emp.find('Venkatesh')
+console.log(emp2)
+
+=====
+https://cazton.com/blogs/technical/access-modifiers-in-typescript
+https://www.javatpoint.com/typescript-access-modifiers
+========
+
+https://www.tutorialsteacher.com/typescript/typescript-module
+https://gist.github.com/dmnsgn/4a6ad76de1b5928f13f68f406c70bb09 // Export module
+
+https://www.tutorialsteacher.com/typescript/typescript-generic //Flexibility and Scalable code concepts
+
+Generics uses the type variable <T>, a special kind of variable that denotes types. The type variable remembers the type that the user provides 
+and works with that particular type only. This is called preserving the type information.
+
+function getArray<T>(items : T[] ) : T[] {
+    return new Array<T>().concat(items);
+}
+
+let myNumArr = getArray<number>([100, 200, 300]);
+let myStrArr = getArray<string>(["Hello", "World"]);
+
+myNumArr.push(400); // OK
+myStrArr.push("Hello TypeScript"); // OK
+
+myNumArr.push("Hi"); // Compiler Error
+myStrArr.push(500); // Compiler Error
+
+
+
+
+####################
+
+https://itnext.io/mobile-automation-with-appium-webdriverio-using-typescript-bbb7e982b6ea
+
+https://forum.ionicframework.com/t/ionic-app-automation-with-appium-release-choice-instead-of-xpath/108974/3
+
+https://crondev.wordpress.com/2018/04/23/e2e-tests-for-ionic-or-any-other-hybrid-app/
+
+https://livebook.manning.com/book/ionic-in-action/chapter-9/57
+
+https://pratikchanchpara.medium.com/hybrid-ios-ionic-cordova-app-automation-using-appium-on-a-real-device-7bb2e392241c
+
+https://www.kirupa.com/apps/webview.htm
+
+
+
+https://www.geeksforgeeks.org/how-to-use-getters-setters-in-typescript/
+https://www.codegrepper.com/code-examples/typescript/typescript+getter%2Fsetter+best+practice
+
+
+Allure Typescript:
+=================
+https://github.com/automationbro/webdriverio-tutorial/tree/master/test
+https://github.com/cloudinary/wdio-allure-ts-example
+https://dev.to/automationbro/integrate-allure-reporting-in-webdriverio-33d9
+
+https://github.com/naveenanimation20/WebDriverIO-POM/blob/master/package.json
+youtube.com/watch?v=Bk38n17hgCc
+https://github.com/cloudinary/wdio-allure-ts-example
+https://www.youtube.com/watch?v=e8goAKb6CC0&list=PL6AdzyjjD5HBbt9amjf3wIVMaobb28ZYN
+https://testautonation.com/webdriverio-appium/
+
+https://medium.com/@mahishalunuwila/mobile-automation-with-webdriverio-5ed2645eea14
+
+
+
+https://khyatisehgal.wordpress.com/2020/08/14/generating-allure-reports-in-webdriverio/
+https://github.com/systelab/seed-angular/blob/master/e2e/src/login/tests/login.e2e-spec.ts
+https://github.com/systelab/seed-angular/blob/master/e2e/src/main/tests/allergy/allergy-crud.e2e-spec.ts
+https://www.wearecogworks.com/blog/getting-started-with-visual-regression-testing-and-webdriverio/
+
+
